@@ -9,7 +9,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
@@ -17,65 +17,118 @@
             --primary: #4361ee;
             --primary-dark: #3a0ca3;
             --primary-light: #4cc9f0;
+            --accent: #7209b7;
             --secondary: #f72585;
             --light: #f8f9fa;
             --dark: #212529;
+            --dark-blue: #0d1b2a;
             --gray: #6c757d;
             --light-gray: #e9ecef;
+            --card-gradient: linear-gradient(145deg, #ffffff, #f8f9fa);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: #f8fafc;
+            background: linear-gradient(135deg, #f8fafc 0%, #e6f7ff 100%);
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(76, 201, 240, 0.05) 0%, rgba(76, 201, 240, 0) 40%),
+                radial-gradient(circle at 90% 80%, rgba(67, 97, 238, 0.05) 0%, rgba(67, 97, 238, 0) 40%);
+            z-index: -1;
         }
         
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Poppins', sans-serif;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
         
         /* Navbar */
         .navbar {
             background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
             padding: 1rem 0;
+            transition: all 0.4s ease;
         }
         
         .navbar-brand {
-            font-weight: 700;
+            font-weight: 800;
             color: var(--primary-dark);
             display: flex;
             align-items: center;
+            font-size: 1.6rem;
         }
         
         .navbar-brand i {
             margin-right: 0.5rem;
             color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar-brand:hover i {
+            transform: scale(1.2);
         }
         
         .nav-link {
-            font-weight: 500;
-            padding: 0.5rem 1rem;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
             color: var(--dark);
             transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1.2rem;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+            border-radius: 2px;
         }
         
         .nav-link:hover {
             color: var(--primary);
         }
         
+        .nav-link:hover:after {
+            width: calc(100% - 2.4rem);
+        }
+        
         .nav-link.active {
             color: var(--primary);
-            font-weight: 600;
+            font-weight: 700;
+        }
+        
+        .nav-link.active:after {
+            width: calc(100% - 2.4rem);
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.1) 100%);
-            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.08) 0%, rgba(76, 201, 240, 0.08) 100%);
+            padding: 7rem 0 5rem;
             position: relative;
             overflow: hidden;
         }
@@ -89,7 +142,7 @@
             height: 100%;
             background: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
             background-size: cover;
-            opacity: 0.1;
+            opacity: 0.05;
             z-index: 0;
         }
         
@@ -99,60 +152,116 @@
         }
         
         .hero-title {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3.2rem;
+            font-weight: 800;
             color: var(--primary-dark);
             margin-bottom: 1.5rem;
             line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
         
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             color: var(--gray);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             max-width: 700px;
+            font-weight: 400;
         }
         
         .hero-btn {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border: none;
-            padding: 0.75rem 2rem;
+            padding: 1rem 2.5rem;
             font-weight: 600;
             border-radius: 50px;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .hero-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+            transition: all 0.4s ease;
+            z-index: -1;
         }
         
         .hero-btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
+        }
+        
+        .hero-btn:hover:before {
+            width: 100%;
         }
         
         .hero-btn-secondary {
             background-color: transparent;
             color: var(--primary);
             border: 2px solid var(--primary);
-            margin-left: 1rem;
+            margin-left: 1.2rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            padding: 0.9rem 2.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+        }
+        
+        .hero-btn-secondary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(67, 97, 238, 0.1);
+            transition: all 0.4s ease;
+            z-index: -1;
         }
         
         .hero-btn-secondary:hover {
-            background-color: rgba(67, 97, 238, 0.1);
+            background-color: transparent;
             color: var(--primary-dark);
             border-color: var(--primary-dark);
+        }
+        
+        .hero-btn-secondary:hover:before {
+            width: 100%;
+        }
+        
+        .hero-image {
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.4s ease;
+            border: 5px solid white;
+        }
+        
+        .hero-image:hover {
+            transform: perspective(1000px) rotateY(0);
         }
         
         /* Video Section */
         .section-title {
             position: relative;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             text-align: center;
         }
         
         .section-title h2 {
-            font-weight: 700;
+            font-weight: 800;
             color: var(--primary-dark);
             display: inline-block;
-            padding-bottom: 0.5rem;
+            padding-bottom: 1rem;
+            position: relative;
         }
         
         .section-title h2::after {
@@ -161,30 +270,64 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 2px;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 5px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 1.5rem auto 0;
         }
         
         .video-section {
-            padding: 5rem 0;
+            padding: 6rem 0;
             background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), #4CAF50);
+            z-index: 1;
         }
         
         .video-card {
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
             margin-bottom: 2rem;
-            background: white;
+            background: var(--card-gradient);
             border: none;
+            position: relative;
+            transform: translateY(0);
         }
         
         .video-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.15);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(67, 97, 238, 0.2);
+        }
+        
+        .video-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 60%, rgba(67, 97, 238, 0.1) 100%);
+            z-index: 1;
+            pointer-events: none;
         }
         
         .video-container {
@@ -194,13 +337,13 @@
             background-color: #000;
         }
         
-        .video-container video {
+        .video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            border: none;
         }
         
         .video-overlay {
@@ -224,154 +367,212 @@
         }
         
         .play-btn {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.2);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.25);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(5px);
             transition: all 0.3s ease;
+            box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.15);
+            cursor: pointer;
         }
         
         .play-btn i {
             color: white;
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-left: 5px;
         }
         
         .video-card:hover .play-btn {
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .video-thumbnail {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity 0.3s ease;
-        }
-        
-        .video-thumbnail.hidden {
-            opacity: 0;
+            transform: scale(1.15);
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 0 0 15px rgba(255, 255, 255, 0.2);
         }
         
         .video-card-body {
-            padding: 1.5rem;
+            padding: 1.8rem;
+            position: relative;
+            z-index: 2;
         }
         
         .video-title {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--primary-dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
         }
         
         .video-description {
             color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            min-height: 60px;
         }
         
         .video-duration {
             display: inline-block;
-            background: var(--light-gray);
-            padding: 0.25rem 0.75rem;
+            background: rgba(67, 97, 238, 0.1);
+            padding: 0.4rem 1.2rem;
             border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--dark);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
         }
         
         /* Features Section */
         .features-section {
-            padding: 5rem 0;
+            padding: 6rem 0;
             background: linear-gradient(135deg, rgba(248, 249, 250, 1) 0%, rgba(233, 236, 239, 1) 100%);
+            position: relative;
         }
         
         .feature-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
+            background: var(--card-gradient);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
             height: 100%;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(67, 97, 238, 0.15);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            transition: height 0.4s ease;
+        }
+        
+        .feature-card:hover::before {
+            height: 100%;
         }
         
         .feature-icon {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             background: rgba(67, 97, 238, 0.1);
-            border-radius: 12px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             color: var(--primary);
-            font-size: 1.5rem;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            background: rgba(67, 97, 238, 0.15);
+            transform: scale(1.1);
         }
         
         .feature-title {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--primary-dark);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
         }
         
         .feature-text {
             color: var(--gray);
+            margin-bottom: 1.8rem;
+            font-size: 1.05rem;
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 5px 20px rgba(67, 97, 238, 0.3);
+            transform: translateY(-3px);
         }
         
         /* Partners Section */
         .partners-section {
-            padding: 3rem 0;
+            padding: 5rem 0;
             background: white;
         }
         
         .partner-logo {
-            height: 60px;
+            height: 80px;
             width: auto;
             object-fit: contain;
             filter: grayscale(100%);
             opacity: 0.7;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            padding: 15px;
         }
         
         .partner-logo:hover {
             filter: grayscale(0%);
             opacity: 1;
+            transform: translateY(-5px);
         }
         
         /* Footer */
         .footer {
-            background: var(--primary-dark);
+            background: linear-gradient(135deg, var(--primary-dark), #1a0c52);
             color: white;
-            padding: 4rem 0 2rem;
+            padding: 5rem 0 2rem;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), #4CAF50);
         }
         
         .footer-title {
-            font-weight: 600;
-            margin-bottom: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.8rem;
             position: relative;
             display: inline-block;
+            font-size: 1.4rem;
         }
         
         .footer-title::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -10px;
             left: 0;
-            width: 40px;
-            height: 3px;
+            width: 50px;
+            height: 4px;
             background: var(--primary-light);
+            border-radius: 4px;
+        }
+        
+        .footer p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            margin-bottom: 1.8rem;
+            font-size: 1.05rem;
         }
         
         .footer-links {
@@ -380,13 +581,25 @@
         }
         
         .footer-links li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
         
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 1.05rem;
+        }
+        
+        .footer-links a::before {
+            content: '›';
+            margin-right: 12px;
+            color: var(--primary-light);
+            transition: transform 0.3s ease;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
         
         .footer-links a:hover {
@@ -394,90 +607,136 @@
             padding-left: 5px;
         }
         
-        .footer-contact i {
-            margin-right: 0.5rem;
-            width: 20px;
-            text-align: center;
-            color: var(--primary-light);
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            margin-top: 2rem;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+        .footer-links a:hover::before {
+            transform: translateX(5px);
         }
         
         .social-icons {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
         
         .social-icon {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            font-size: 1.3rem;
         }
         
         .social-icon:hover {
             background: var(--primary-light);
             color: var(--primary-dark);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2.5rem;
+            margin-top: 3rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+        
+        /* Statistics Section */
+        .stats-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            position: relative;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
         
         /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+        }
+        
         @media (max-width: 992px) {
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.4rem;
             }
             
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-btns {
+                flex-wrap: wrap;
+            }
+            
+            .hero-btn-secondary {
+                margin-left: 0;
+                margin-top: 1.2rem;
             }
         }
         
         @media (max-width: 768px) {
             .hero {
-                padding: 3rem 0;
+                padding: 5rem 0 4rem;
             }
             
             .hero-title {
-                font-size: 1.8rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-            }
-            
-            .hero-btn-secondary {
-                margin-left: 0;
-                margin-top: 1rem;
+                font-size: 2.2rem;
             }
             
             .section-title h2 {
-                font-size: 1.8rem;
+                font-size: 1.9rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .stat-number {
+                font-size: 2.8rem;
             }
         }
         
         @media (max-width: 576px) {
             .hero-title {
-                font-size: 1.6rem;
+                font-size: 2rem;
             }
             
             .section-title h2 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
             
             .feature-card {
-                padding: 1.5rem;
+                padding: 2rem 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -528,178 +787,188 @@
                     </div>
                 </div>
                 <div class="col-lg-5 d-none d-lg-block animate__animated animate__fadeIn animate__delay-1s">
-                    <img src="https://th.bing.com/th/id/OIP.IIHueY0IyPh3Wzw5_Y4KzwAAAA?w=280&h=280&rs=1&pid=ImgDetMain" alt="Asthma Management" class="img-fluid rounded-3 shadow">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Asthma Management" class="img-fluid rounded-3 shadow hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stat-card">
+                        <div class="stat-number">6.2M</div>
+                        <div class="stat-label">Children with Asthma</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stat-card">
+                        <div class="stat-number">13.8M</div>
+                        <div class="stat-label">School Days Missed</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stat-card">
+                        <div class="stat-number">78%</div>
+                        <div class="stat-label">Schools Improved</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stat-card">
+                        <div class="stat-number">50%</div>
+                        <div class="stat-label">ER Visits Reduced</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Video Section -->
-    <!-- Video Section -->
-<section id="videos" class="video-section">
-    <div class="container">
-        <div class="section-title">
-            <h2 class="animate__animated animate__fadeIn">Asthma Environmental Triggers Video Series</h2>
-        </div>
-        <p class="text-center mb-5 animate__animated animate__fadeIn animate__delay-1s">Learn how to identify and manage asthma triggers in school environments through our comprehensive video series.</p>
-        
-        <div class="row">
-            <!-- Video 1 - Introduction -->
-            <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp">
-                <div class="video-card h-100">
-                    <div class="video-container">
-                        <video loop muted>
-                            <source src="file:///C:/Users/Owner/Desktop/asma%20part%201.mp4" type="video/mp4">
-                        </video>
-                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Introduction" class="video-thumbnail">
-                        <div class="video-overlay">
-                            <div class="play-btn">
-                                <i class="fas fa-play"></i>
+    <section id="videos" class="video-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="animate__animated animate__fadeIn">Asthma Environmental Triggers Video Series</h2>
+            </div>
+            <p class="text-center mb-5 animate__animated animate__fadeIn animate__delay-1s section-subtitle">Learn how to identify and manage asthma triggers in school environments through our comprehensive video series.</p>
+            
+            <div class="row">
+                <!-- Video 1 - Introduction -->
+                <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp">
+                    <div class="video-card h-100">
+                        <div class="video-container" id="video-container-1">
+                            <iframe class="video-iframe" src="https://www.youtube.com/embed/n90aLNDbwso?rel=0&modestbranding=1" allowfullscreen></iframe>
+                            <div class="video-overlay">
+                                <div class="play-btn" data-video="1">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="video-card-body">
-                        <h5 class="video-title">Introduction to Asthma Triggers</h5>
-                        <p class="video-description">Overview of common asthma triggers found in school environments.</p>
-                        <span class="video-duration">4:32 min</span>
+                        <div class="video-card-body">
+                            <h5 class="video-title">Introduction to Asthma Triggers</h5>
+                            <p class="video-description">Overview of common asthma triggers found in school environments.</p>
+                            <span class="video-duration">4:32 min</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Video 2 - Classroom -->
-            <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-1s">
-                <div class="video-card h-100">
-                    <div class="video-container">
-                        <video loop muted>
-                            <source src="file:///C:/Users/Owner/Desktop/asma%20part%202.mp4" type="video/mp4">
-                        </video>
-                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Classroom" class="video-thumbnail">
-                        <div class="video-overlay">
-                            <div class="play-btn">
-                                <i class="fas fa-play"></i>
+                
+                <!-- Video 2 - Classroom -->
+                <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="video-card h-100">
+                        <div class="video-container" id="video-container-2">
+                            <iframe class="video-iframe" src="https://www.youtube.com/embed/fYKxLnGr9M8?rel=0&modestbranding=1" allowfullscreen></iframe>
+                            <div class="video-overlay">
+                                <div class="play-btn" data-video="2">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="video-card-body">
-                        <h5 class="video-title">Classroom Triggers</h5>
-                        <p class="video-description">Identifying and reducing asthma triggers in classrooms.</p>
-                        <span class="video-duration">5:15 min</span>
+                        <div class="video-card-body">
+                            <h5 class="video-title">Classroom Triggers</h5>
+                            <p class="video-description">Identifying and reducing asthma triggers in classrooms.</p>
+                            <span class="video-duration">5:15 min</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Video 3 - Outdoor -->
-            <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-2s">
-                <div class="video-card h-100">
-                    <div class="video-container">
-                        <video loop muted>
-                            <source src="file:///C:/Users/Owner/Desktop/asma%20part%203.mp4" type="video/mp4">
-                        </video>
-                        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Outdoor" class="video-thumbnail">
-                        <div class="video-overlay">
-                            <div class="play-btn">
-                                <i class="fas fa-play"></i>
+                
+                <!-- Video 3 - Outdoor -->
+                <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="video-card h-100">
+                        <div class="video-container" id="video-container-3">
+                            <iframe class="video-iframe" src="https://www.youtube.com/embed/HFvSZGrBFTc?rel=0&modestbranding=1" allowfullscreen></iframe>
+                            <div class="video-overlay">
+                                <div class="play-btn" data-video="3">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="video-card-body">
-                        <h5 class="video-title">Outdoor Triggers</h5>
-                        <p class="video-description">Managing asthma triggers during outdoor activities.</p>
-                        <span class="video-duration">6:08 min</span>
+                        <div class="video-card-body">
+                            <h5 class="video-title">Outdoor Triggers</h5>
+                            <p class="video-description">Managing asthma triggers during outdoor activities.</p>
+                            <span class="video-duration">6:08 min</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Video 4 - Cleaning -->
-            <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp">
-                <div class="video-card h-100">
-                    <div class="video-container">
-                        <video loop muted>
-                            <source src="file:///C:/Users/Owner/Desktop/asma%20part%204.mp4" type="video/mp4">
-                        </video>
-                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Cleaning" class="video-thumbnail">
-                        <div class="video-overlay">
-                            <div class="play-btn">
-                                <i class="fas fa-play"></i>
+                
+                <!-- Video 4 - Cleaning -->
+                <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp">
+                    <div class="video-card h-100">
+                        <div class="video-container" id="video-container-4">
+                            <iframe class="video-iframe" src="https://www.youtube.com/embed/hwrdY7hfuTc?rel=0&modestbranding=1" allowfullscreen></iframe>
+                            <div class="video-overlay">
+                                <div class="play-btn" data-video="4">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="video-card-body">
-                        <h5 class="video-title">Cleaning Products</h5>
-                        <p class="video-description">Asthma-safe cleaning practices for schools.</p>
-                        <span class="video-duration">4:45 min</span>
+                        <div class="video-card-body">
+                            <h5 class="video-title">Cleaning Products</h5>
+                            <p class="video-description">Asthma-safe cleaning practices for schools.</p>
+                            <span class="video-duration">4:45 min</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Video 5 - HVAC -->
-            <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-1s">
-                <div class="video-card h-100">
-                    <div class="video-container">
-                        <video loop muted>
-                            <source src="file:///C:/Users/Owner/Desktop/asma%20part%205.mp4" type="video/mp4">
-                        </video>
-                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="HVAC" class="video-thumbnail">
-                        <div class="video-overlay">
-                            <div class="play-btn">
-                                <i class="fas fa-play"></i>
+                
+                <!-- Video 5 - HVAC -->
+                <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="video-card h-100">
+                        <div class="video-container" id="video-container-5">
+                            <iframe class="video-iframe" src="https://www.youtube.com/embed/WNmbK813Ag8?rel=0&modestbranding=1" allowfullscreen></iframe>
+                            <div class="video-overlay">
+                                <div class="play-btn" data-video="5">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="video-card-body">
-                        <h5 class="video-title">HVAC Systems</h5>
-                        <p class="video-description">Optimizing ventilation systems for asthma management.</p>
-                        <span class="video-duration">7:22 min</span>
+                        <div class="video-card-body">
+                            <h5 class="video-title">HVAC Systems</h5>
+                            <p class="video-description">Optimizing ventilation systems for asthma management.</p>
+                            <span class="video-duration">7:22 min</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Video 6 - Emergency -->
-            <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-2s">
-                <div class="video-card h-100">
-                    <div class="video-container">
-                        <video loop muted>
-                            <source src="file:///C:/Users/Owner/Desktop/asma%20part%206.mp4" type="video/mp4">
-                        </video>
-                        <img src="https://images.unsplash.com/photo-1582719471381-971d8a82b3c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Emergency" class="video-thumbnail">
-                        <div class="video-overlay">
-                            <div class="play-btn">
-                                <i class="fas fa-play"></i>
+                
+                <!-- Video 6 - Emergency -->
+                <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="video-card h-100">
+                        <div class="video-container" id="video-container-6">
+                            <iframe class="video-iframe" src="https://www.youtube.com/embed/cssobv7fkrA?rel=0&modestbranding=1" allowfullscreen></iframe>
+                            <div class="video-overlay">
+                                <div class="play-btn" data-video="6">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="video-card-body">
-                        <h5 class="video-title">Emergency Preparedness</h5>
-                        <p class="video-description">Protocols for asthma emergencies in schools.</p>
-                        <span class="video-duration">5:50 min</span>
+                        <div class="video-card-body">
+                            <h5 class="video-title">Emergency Preparedness</h5>
+                            <p class="video-description">Protocols for asthma emergencies in schools.</p>
+                            <span class="video-duration">5:50 min</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Video 7 - NEW Policy Implementation -->
-            <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp">
-                <div class="video-card h-100">
-                    <div class="video-container">
-                        <video loop muted>
-                            <source src="file:///C:/Users/Owner/Desktop/asma%20part%207.mp4" type="video/mp4">
-                        </video>
-                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Policy" class="video-thumbnail">
-                        <div class="video-overlay">
-                            <div class="play-btn">
-                                <i class="fas fa-play"></i>
+                
+                <!-- Video 7 - Policy Implementation -->
+                <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp">
+                    <div class="video-card h-100">
+                        <div class="video-container" id="video-container-7">
+                            <iframe class="video-iframe" src="https://www.youtube.com/embed/VeizGTU1gPs?rel=0&modestbranding=1" allowfullscreen></iframe>
+                            <div class="video-overlay">
+                                <div class="play-btn" data-video="7">
+                                    <i class="fas fa-play"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="video-card-body">
-                        <h5 class="video-title">Policy Implementation</h5>
-                        <p class="video-description">Creating and enforcing asthma-friendly school policies.</p>
-                        <span class="video-duration">6:15 min</span>
+                        <div class="video-card-body">
+                            <h5 class="video-title">Policy Implementation</h5>
+                            <p class="video-description">Creating and enforcing asthma-friendly school policies.</p>
+                            <span class="video-duration">6:15 min</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Features Section -->
     <section id="resources" class="features-section">
@@ -707,7 +976,7 @@
             <div class="section-title">
                 <h2 class="animate__animated animate__fadeIn">Key Resources</h2>
             </div>
-            <p class="text-center mb-5 animate__animated animate__fadeIn animate__delay-1s">Additional materials to support your asthma management initiatives in schools.</p>
+            <p class="text-center mb-5 animate__animated animate__fadeIn animate__delay-1s section-subtitle">Additional materials to support your asthma management initiatives in schools.</p>
             
             <div class="row g-4">
                 <div class="col-md-4 animate__animated animate__fadeInUp">
@@ -717,7 +986,7 @@
                         </div>
                         <h4 class="feature-title">Asthma Action Plan Template</h4>
                         <p class="feature-text">Download our customizable asthma action plan template to help students manage their asthma at school.</p>
-                        <a href="#" class="btn btn-sm btn-outline-primary mt-3">Download PDF</a>
+                        <a href="#" class="btn btn-outline-primary mt-3">Download PDF</a>
                     </div>
                 </div>
                 
@@ -728,7 +997,7 @@
                         </div>
                         <h4 class="feature-title">School Environment Checklist</h4>
                         <p class="feature-text">Comprehensive checklist to assess your school's environment for potential asthma triggers and improvement opportunities.</p>
-                        <a href="#" class="btn btn-sm btn-outline-primary mt-3">Download Checklist</a>
+                        <a href="#" class="btn btn-outline-primary mt-3">Download Checklist</a>
                     </div>
                 </div>
                 
@@ -739,7 +1008,7 @@
                         </div>
                         <h4 class="feature-title">Staff Training Guide</h4>
                         <p class="feature-text">Step-by-step guide for training school staff on recognizing and responding to asthma symptoms and emergencies.</p>
-                        <a href="#" class="btn btn-sm btn-outline-primary mt-3">Download Guide</a>
+                        <a href="#" class="btn btn-outline-primary mt-3">Download Guide</a>
                     </div>
                 </div>
             </div>
@@ -747,27 +1016,7 @@
     </section>
 
     <!-- Partners Section -->
-    <section id="about" class="partners-section">
-        <div class="container">
-            <div class="section-title">
-                <h2 class="animate__animated animate__fadeIn">Our Partners</h2>
-            </div>
-            <div class="row align-items-center justify-content-center g-4 animate__animated animate__fadeIn animate__delay-1s">
-                <div class="col-6 col-md-3 text-center">
-                    <img src="https://th.bing.com/th/id/OIP.23Y7IXfZyPVvRKwqcKKQmAHaHa?rs=1&pid=ImgDetMain" alt="RAMP" class="img-fluid partner-logo">
-                </div>
-                <div class="col-6 col-md-3 text-center">
-                    <img src="https://tupeca.org/PublishingImages/Pages/Home/CHSA_ATS.png" alt="California School-Based Health Alliance" class="img-fluid partner-logo">
-                </div>
-                <div class="col-6 col-md-3 text-center">
-                    <img src="https://th.bing.com/th/id/R.8676e74edea82524a25e834455fff6d4?rik=k%2b3UCPJkD3JmJw&riu=http%3a%2f%2fwww.cjaonline.net%2fwp-content%2fuploads%2f2015%2f07%2fpublic-health-institute-logo.jpg&ehk=KdRbFyV2mvx1rllb2%2fXJ81P5NEOXL8uCVoEZbzJiYn8%3d&risl=&pid=ImgRaw&r=0" alt="Public Health Institute" class="img-fluid partner-logo">
-                </div>
-                <div class="col-6 col-md-3 text-center">
-                    <img src="https://logo-marque.com/wp-content/uploads/2021/08/CDC-Symbole.jpg" alt="CDC" class="img-fluid partner-logo">
-                </div>
-            </div>
-        </div>
-    </section>
+   
 
     <!-- Footer -->
     <footer class="footer" id="contact">
@@ -783,7 +1032,7 @@
                         <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-4 mb-4">
+                <div class="col-lg-4 mb-4">
                     <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="#">Home</a></li>
@@ -793,7 +1042,7 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-4 mb-4">
+                <div class="col-lg-4 mb-4">
                     <h4 class="footer-title">Resources</h4>
                     <ul class="footer-links">
                         <li><a href="#">Asthma Action Plans</a></li>
@@ -803,19 +1052,9 @@
                         <li><a href="#">Research Papers</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-4 mb-4">
-                    <h4 class="footer-title">Contact Us</h4>
-                    <div class="footer-contact">
-                        <p><i class="fas fa-envelope"></i> info@rampasthma.org</p>
-                        <p><i class="fas fa-phone"></i> (510) 302-3366</p>
-                        <p><i class="fas fa-map-marker-alt"></i> 555 12th Street, Oakland, CA 94607</p>
-                    </div>
-                </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Regional Asthma Management & Prevention (RAMP). All rights reserved.</p>
-                <p class="mb-0">A project of the Public Health Institute</p>
-            </div>
+            
+            
         </div>
     </footer>
 
@@ -824,49 +1063,28 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Video hover play functionality
-            const videoCards = document.querySelectorAll('.video-card');
+            // Initialize YouTube video players
+            const videoPlayers = document.querySelectorAll('.video-container');
             
-            videoCards.forEach(card => {
-                const video = card.querySelector('video');
-                const thumbnail = card.querySelector('.video-thumbnail');
-                const overlay = card.querySelector('.video-overlay');
-                const playBtn = card.querySelector('.play-btn');
+            videoPlayers.forEach(container => {
+                const iframe = container.querySelector('iframe');
+                const overlay = container.querySelector('.video-overlay');
+                const playBtn = container.querySelector('.play-btn');
                 
-                // Play on hover
-                card.addEventListener('mouseenter', () => {
+                // Initially hide the iframe
+                iframe.style.display = 'none';
+                
+                // Play button functionality
+                playBtn.addEventListener('click', function() {
+                    // Hide overlay and show iframe
                     overlay.classList.add('hidden');
-                    thumbnail.classList.add('hidden');
-                    video.play().catch(e => console.log(e));
-                });
-                
-                // Pause when mouse leaves
-                card.addEventListener('mouseleave', () => {
-                    video.pause();
-                    video.currentTime = 0;
-                    overlay.classList.remove('hidden');
-                    thumbnail.classList.remove('hidden');
-                });
-                
-                // Click to play/pause
-                card.addEventListener('click', () => {
-                    if (video.paused) {
-                        overlay.classList.add('hidden');
-                        thumbnail.classList.add('hidden');
-                        video.play().catch(e => console.log(e));
-                    } else {
-                        video.pause();
-                        overlay.classList.remove('hidden');
-                        thumbnail.classList.remove('hidden');
-                    }
-                });
-                
-                // Play button click
-                playBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    overlay.classList.add('hidden');
-                    thumbnail.classList.add('hidden');
-                    video.play().catch(e => console.log(e));
+                    iframe.style.display = 'block';
+                    
+                    // Get the video URL
+                    const src = iframe.getAttribute('src');
+                    
+                    // Update to autoplay
+                    iframe.setAttribute('src', src + '&autoplay=1');
                 });
             });
             
@@ -892,11 +1110,11 @@
             window.addEventListener('scroll', function() {
                 const navbar = document.querySelector('.navbar');
                 if (window.scrollY > 50) {
-                    navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
-                    navbar.style.padding = '0.5rem 0';
+                    navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                    navbar.style.padding = '0.7rem 0';
                 } else {
                     navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.05)';
-                    navbar.style.padding =                    navbar.style.padding = '1rem 0';
+                    navbar.style.padding = '1rem 0';
                 }
             });
 
@@ -944,29 +1162,26 @@
                 });
             });
 
-            // Tooltip initialization
-            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
-            });
-
             // Back to top button
             const backToTopButton = document.createElement('button');
             backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
             backToTopButton.className = 'btn btn-primary btn-floating back-to-top';
             backToTopButton.style.position = 'fixed';
-            backToTopButton.style.bottom = '20px';
-            backToTopButton.style.right = '20px';
+            backToTopButton.style.bottom = '30px';
+            backToTopButton.style.right = '30px';
             backToTopButton.style.display = 'none';
             backToTopButton.style.zIndex = '99';
             backToTopButton.style.borderRadius = '50%';
-            backToTopButton.style.width = '50px';
-            backToTopButton.style.height = '50px';
+            backToTopButton.style.width = '60px';
+            backToTopButton.style.height = '60px';
+            backToTopButton.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.3)';
             document.body.appendChild(backToTopButton);
 
             window.addEventListener('scroll', () => {
                 if (window.pageYOffset > 300) {
-                    backToTopButton.style.display = 'block';
+                    backToTopButton.style.display = 'flex';
+                    backToTopButton.style.alignItems = 'center';
+                    backToTopButton.style.justifyContent = 'center';
                 } else {
                     backToTopButton.style.display = 'none';
                 }
@@ -978,44 +1193,7 @@
                     behavior: 'smooth'
                 });
             });
-
-            // Modal for video fullscreen
-            const videoModal = new bootstrap.Modal(document.getElementById('videoModal'), {
-                keyboard: false
-            });
-
-            const modalVideo = document.getElementById('modalVideo');
-            
-            document.querySelectorAll('.video-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const videoSrc = this.querySelector('video').getAttribute('src');
-                    modalVideo.setAttribute('src', videoSrc);
-                    videoModal.show();
-                });
-            });
-
-            // Pause video when modal is closed
-            document.getElementById('videoModal').addEventListener('hidden.bs.modal', function () {
-                modalVideo.setAttribute('src', '');
-            });
         });
     </script>
-
-    <!-- Video Modal -->
-    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="videoModalLabel">Asthma Environmental Intervention</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-0">
-                    <video id="modalVideo" controls autoplay style="width: 100%; height: auto;">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
